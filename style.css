@@ -1,0 +1,197 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #141315;
+  background-image: url("assets/topography.svg");
+  padding: 10px;
+}
+
+.todo-list {
+  width: 100%;
+  max-width: 540px;
+  border-radius: 50px;
+  background: #f0f0f0;
+  box-shadow: 20px 20px 60px #575757, -20px -20px 60px #3b3b3b;
+  margin: 100px auto 20px;
+  padding: 40px 30px 70px;
+}
+.todo-list h1 {
+  color: #4e084e;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+.todo-list h2 {
+  color: #4e084e;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #e4e4e4;
+  border-radius: 40px;
+  padding-left: 20px;
+  margin-bottom: 25px;
+}
+
+input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 10px;
+  font-weight: 14px;
+}
+
+button {
+  padding: 12.5px 30px;
+  border: 0;
+  border-radius: 100px;
+  background-color: #c20000;
+  color: #ffffff;
+  font-weight: bold;
+  margin-left: 190px;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+}
+button:hover {
+  background-color: #000000;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.3137254902);
+  transform: scale(1.1);
+}
+button:active {
+  background-color: #b10000;
+  transition: all 0.25s;
+  -webkit-transition: all 0.25s;
+  box-shadow: none;
+  transform: scale(0.98);
+}
+
+ul li {
+  list-style: none;
+  font-size: 17px;
+  padding: 12px 8px 12px 50px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  position: relative;
+}
+ul li::before {
+  content: "";
+  position: absolute;
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
+  background-image: url("assets/unchecked.png");
+  background-size: cover;
+  background-position: center;
+  top: 12px;
+  left: 8px;
+  transition: background-image 0.3s ease-in-out;
+}
+ul li.checked {
+  color: #555;
+  text-decoration: line-through;
+}
+ul li.checked::before {
+  background-image: url("assets/checked.png");
+}
+ul li span {
+  position: absolute;
+  right: 0;
+  top: 5px;
+  width: 40px;
+  height: 40px;
+  font-size: 22px;
+  color: #ff1900;
+  line-height: 40px;
+  text-align: center;
+}
+ul li span:hover {
+  background-color: rgba(255, 25, 0, 0.1176470588);
+}
+
+p {
+  color: #ffffff;
+}
+
+.timer {
+  text-align: center;
+}
+.timer .timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30rem;
+  height: 30rem;
+  border-radius: 50%;
+  box-shadow: 0px 0px 15px 10px hsl(235, 36%, 35%);
+}
+.timer .timer .circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 26rem;
+  height: 26rem;
+  border-radius: 50%;
+  background-color: #ff1900;
+  position: relative;
+}
+.timer .timer .circle::before {
+  content: "";
+  position: absolute;
+  width: 95%;
+  height: 95%;
+  border-radius: 50%;
+  background-color: #141315;
+}
+.timer .timer .time {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+.timer .timer .time p {
+  font-size: 5.6rem;
+}
+.timer .timer .time p:nth-of-type(2) {
+  position: relative;
+  top: -0.5rem;
+  margin-inline: 1rem;
+}
+.timer .controls {
+  margin-top: 20px;
+}
+.timer .controls button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+@keyframes rotateLine {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.timer.running .circle::before {
+  animation-play-state: running;
+}/*# sourceMappingURL=style.css.map */
