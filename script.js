@@ -166,4 +166,6 @@ resetBtn.addEventListener('click', resetTimer);
 updateDisplay();
 updateCircle();
 
+module.exports = { displayDate };
+
 
