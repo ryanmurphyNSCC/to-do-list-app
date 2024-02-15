@@ -79,25 +79,29 @@ function clearTasks() {
     localStorage.removeItem('data');
 }
 
-listContainer.addEventListener('click', function(e) {
-    if (e.target.tagName === 'LI') {
-        e.target.classList.toggle('checked');
-        saveData();
-    } else if (e.target.tagName === 'SPAN') {
-        e.target.parentElement.remove();
-        saveData();
-    } else if (e.target.id === 'clear-button') {
-        clearTasks();
-        saveData();
-    }
-}, false);
+if (listContainer) {
+  listContainer.addEventListener('click', function(e) {
+      if (e.target.tagName === 'LI') {
+          e.target.classList.toggle('checked');
+          saveData();
+      } else if (e.target.tagName === 'SPAN') {
+          e.target.parentElement.remove();
+          saveData();
+      } else if (e.target.id === 'clear-button') {
+          clearTasks();
+          saveData();
+      }
+  }, false);
+}
 
 function saveData(){
     localStorage.setItem('data', listContainer.innerHTML);
 }
 
 function showTask() {
-    listContainer.innerHTML = localStorage.getItem('data');
+  if (listContainer) {
+    listContainer.innerHTML = localStorage.getItem('data') || '';
+  }
 }
 
 showTask()
@@ -116,14 +120,20 @@ let minutes = 25;
 let seconds = 0;
 
 function updateDisplay() {
-  minutesDisplay.textContent = minutes < 10 ? `0${minutes}` : minutes;
-  secondsDisplay.textContent = seconds < 10 ? `0${seconds}` : seconds;
+  if (minutesDisplay) {
+    minutesDisplay.textContent = minutes < 10 ? `0${minutes}` : minutes;
+  }
+  if (secondsDisplay) {
+    secondsDisplay.textContent = seconds < 10 ? `0${seconds}` : seconds;
+  }
 }
 
 function updateCircle() {
-  const totalSeconds = minutes * 60 + seconds;
-  const percentage = (totalSeconds / (25 * 60)) * 100;
-  circle.style.background = `conic-gradient(#4285f4 ${percentage}%, #f4f4f4 ${percentage}% 100%)`;
+  if (circle) {
+    const totalSeconds = minutes * 60 + seconds;
+    const percentage = (totalSeconds / (25 * 60)) * 100;
+    circle.style.background = `conic-gradient(#4285f4 ${percentage}%, #f4f4f4 ${percentage}% 100%)`;
+  }
 }
 
 function startTimer() {
@@ -159,8 +169,13 @@ function resetTimer() {
     document.querySelector('.timer').classList.remove('running');
   }
 
-startBtn.addEventListener('click', startTimer);
-resetBtn.addEventListener('click', resetTimer);
+  if (startBtn) {
+    startBtn.addEventListener('click', startTimer);
+  }
+  
+  if (resetBtn) {
+    resetBtn.addEventListener('click', resetTimer);
+  }
 
 // Initial display update
 updateDisplay();
