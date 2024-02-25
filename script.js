@@ -1,6 +1,5 @@
 const inputBox = document.getElementById('input-box');
 const prioritySelector = document.getElementById('priority-selector');
-
 const listContainer = document.getElementById('list-container');
 
 function displayDate() {
@@ -181,6 +180,13 @@ function resetTimer() {
 updateDisplay();
 updateCircle();
 
-module.exports = { displayDate };
+module.exports = {
+  displayDate,
+  addTask,
+  clearTasks,
+  saveData,
+  showTask,
+  setupEditEvent
+};
 
 
