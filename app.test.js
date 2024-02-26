@@ -31,9 +31,25 @@ test('addTask adds a task to the list', () => {
 });
 
 
-test('clearTasks removes all tasks from the list', () => {
+test('clearTasks removes all tasks from the list and clears localStorage', () => {
+  const listContainer = document.getElementById('list-container');
+  const dummyTask = document.createElement('div');
+  listContainer.appendChild(dummyTask);
+  localStorage.setItem('data', JSON.stringify([{ task: 'Dummy Task' }]));
+  
+  // Action: Call the clearTasks function to clear the tasks
+  clearTasks();
 
+  // Check if the list is now empty
+  expect(listContainer.hasChildNodes()).toBe(false);
+  
+  //Check if localStorage 'data' is cleared or set to an appropriate empty state
+  expect(localStorage.getItem('data')).toBeNull(); // or expect it to be '[]' if that's how your implementation works
+
+  // Cleanup: Clear localStorage to avoid affecting other tests
+  localStorage.removeItem('data');
 });
+
 
 test('Ensure that tasks are marked as completed', () => {
   
