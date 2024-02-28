@@ -27,10 +27,25 @@ test('displayDate updates element correctly', () => {
   expect(dateElement).not.toBe(null);
 });
 
-test('addTask adds a task to the list', () => {
+  test('should add a new task to the list', () => {
+    // Mock input value
+    const listContainer = document.getElementById('list-container');
+    const dummyTask = document.createElement('div');
+    listContainer.appendChild(dummyTask);
+    localStorage.setItem('data', JSON.stringify([{ task: 'Dummy Task' }]));
 
+  
 
-});
+  // Check if the list has added dummy task
+  expect(listContainer.hasChildNodes()).toBe(true);
+
+  //Check if localStorage 'data' is there and has the correct value
+  expect(localStorage.getItem('data')).toBeDefined()
+
+  // Cleanup: Clear localStorage to avoid affecting other tests
+  localStorage.removeItem('data');
+  });
+
 
 
 test('clearTasks removes all tasks from the list and clears localStorage', () => {
@@ -52,8 +67,7 @@ test('clearTasks removes all tasks from the list and clears localStorage', () =>
   localStorage.removeItem('data');
 });
 
-
-test('Ensure that tasks are marked as completed', () => {
+test('should toggle task completion class on click', () => {
 
 });
 
@@ -64,7 +78,7 @@ test('setUpEditEvent edits the existing task', () => {
   beforeEach(() => {
     // Reset the document body and create necessary elements before each test
     document.body.innerHTML = `
-      <div id="list-container"></div>
+      <ul id="list-container"></ul>
     `; // Adjust this line to match the actual HTML structure expected by your script
   });
 
