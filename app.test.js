@@ -67,12 +67,44 @@ test('clearTasks removes all tasks from the list and clears localStorage', () =>
   localStorage.removeItem('data');
 });
 
-test('should toggle task completion class on click', () => {
 
-});
+describe('Task Editing Functionality', () => {
+  beforeEach(() => {
+    // Set up the DOM elements required for the test
+    document.body.innerHTML = `
+      <ul id="list-container"></ul>
+    `;
 
-test('setUpEditEvent edits the existing task', () => {
+    // Add a task for editing
+    const listContainer = document.getElementById('list-container');
+    let li = document.createElement('li');
+    li.textContent = 'Original Task';
+    listContainer.appendChild(li);
 
+    // Attach the edit event listener to the task
+    setupEditEvent(li); // Assuming setupEditEvent is your function that attaches the dblclick listener
+  });
+
+  test('setUpEditEvent edits the existing task', () => {
+    const task = document.querySelector('li');
+    
+    // Simulate double click on the task to trigger edit mode
+    task.dispatchEvent(new MouseEvent('dblclick', {bubbles: true}));
+    
+    // After double click, an input field should be present
+    const inputField = document.querySelector('li input');
+    expect(inputField).not.toBeNull();
+    expect(inputField.value).toBe('Original Task'); // Input should contain the original task text
+    
+    // Simulate changing the task
+    inputField.value = 'Edited Task';
+    
+    // Simulate pressing 'Enter' to save the edited task
+    inputField.dispatchEvent(new KeyboardEvent('keyup', {'key': 'Enter'}));
+    
+    // The task's text should now be updated
+    expect(task.textContent).toBe('Edited Task');
+  });
 });
 
   beforeEach(() => {
