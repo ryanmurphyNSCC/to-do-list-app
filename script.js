@@ -93,8 +93,11 @@ if (listContainer) {
   }, false);
 }
 
-function saveData(){
+function saveData() {
+  const listContainer = document.getElementById('list-container'); // Ensure this matches your actual ID
+  if (listContainer) {
     localStorage.setItem('data', listContainer.innerHTML);
+  }
 }
 
 function showTask() {
